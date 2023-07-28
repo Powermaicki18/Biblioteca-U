@@ -22,10 +22,8 @@ void Library::borrowBook(const int bookId, const User &user) {
     }
 
     if (index != -1) {
-        Book bookToBorrow = this->books[index];
-
-        if (bookToBorrow.thereAreAvailableBooks()) {
-            bookToBorrow.borrow(user);
+        if (this->books[index].thereAreAvailableBooks()) {
+            this->books[index].borrow(user);
             return;
         }
 
@@ -71,7 +69,9 @@ void Library::showBorrowedBooks() {
     for (auto & book : this->books) {
         if (book.isBorrowed()) {
             std::cout << book << std::endl;
+            std::cout << "Solicitado por:" << std::endl;
             book.showRequesters();
+            std::cout << std::endl;
         }
     }
 }
